@@ -12,7 +12,7 @@ func main() {
 
 	router := gin.New()
 	router.Use(gin.Logger())
-	router.LoadHTMLGlob("templates/*.html") 
+	router.LoadHTMLGlob("templates/*.html")
 
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", nil)
@@ -22,6 +22,12 @@ func main() {
 		c.HTML(http.StatusOK, "index.html", gin.H{
 			"title" : c.Param("name"),
 		})
+	})
+
+	router.GET("/json/:name", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+            c.Param("name"): "x65han",
+        })
 	})
 
 	//Run Server
