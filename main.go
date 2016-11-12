@@ -3,7 +3,6 @@ package main
 import (
 	"net/http"
 	"os"
-	"fmt"
 	"github.com/gin-gonic/gin"
 )
 
@@ -22,9 +21,9 @@ func main() {
 	})
 
 	router.GET("/:name", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", nil)
-		name := c.Params.ByName("name")
-		fmt.Println("Params: ", name);
+		c.HTML(http.StatusOK, "index.html", gin.H{
+			"title":c.Param("name"),
+		})
 	})
 
 	//Run Server
