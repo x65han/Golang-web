@@ -30,6 +30,24 @@ func main() {
         })
 	})
 
+	router.GET("/info", func(c *gin.Context) {
+		kids := []interface{}{
+			"Selena",
+			"Montegomery",
+		}
+		section := "Name"
+		f := map[string]interface{}{
+		    section: "Wednesday",
+		    "Age":  6,
+		    "Parents": []interface{}{
+		        "Gomez",
+		        "Morticia",
+		    },
+			"Kids":kids,
+		}
+		c.JSON(200, f)
+	})
+
 	//Run Server
 	router.Run(":" + port)
 }
