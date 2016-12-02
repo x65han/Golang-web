@@ -7,13 +7,18 @@ import (
 )
 
 func main() {
+	// Connect to defaul port on server
 	port := os.Getenv("PORT")
+	// If not specified, use port 5000
 	if port == "" {port = "5000"}
 
+	// Initialize Gin server
 	router := gin.New()
+	// Initialize Gin logger
 	router.Use(gin.Logger())
+	// Load all html in templates directory
 	router.LoadHTMLGlob("templates/*.html")
-
+	// REST API
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", nil)
 	})
